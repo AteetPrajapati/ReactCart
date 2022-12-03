@@ -105,7 +105,7 @@ function Overview() {
           </Grid>
         </Grid>
       </ArgonBox>
-      <ArgonBox mb={3}>
+      {/* <ArgonBox mb={3}>
         <Card>
           <ArgonBox pt={2} px={2}>
             <ArgonBox mb={0.5}>
@@ -187,7 +187,7 @@ function Overview() {
             </Grid>
           </ArgonBox>
         </Card>
-      </ArgonBox>
+      </ArgonBox> */}
 
       <Footer />
     </DashboardLayout>

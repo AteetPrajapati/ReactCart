@@ -8,21 +8,25 @@ import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Icon
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import { useDispatch } from 'react-redux'
-import { incrementByAmount } from '../../features/counter/cart'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteItem } from '../../features/counter/cart'
+import ArgonTypography from "components/ArgonTypography";
 
 function Cart() {
     const [products, setProducts] = useState([]);
+    const items = useSelector((state) => state.cartStore.items)
 
     const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch()
 
     useEffect(() => {
-        setProducts(JSON.parse(localStorage.getItem('cartItem') ?? '[]'));
+        setProducts(items);
     }, [])
 
-    const addtoCart = (item) => {
-        dispatch(incrementByAmount(item));
+    const removefromCart = (item) => {
+        dispatch(deleteItem(item));
+        let tempitems = items.filter(e => e.id !== item.id)
+        setProducts(tempitems);
     }
 
     return (
@@ -63,12 +67,11 @@ function Cart() {
                                                     <CurrencyRupee /> {element.price}
                                                 </IconButton>
                                             </ArgonBox>
-                                            <Button onClick={() => addtoCart(element)}>Add to Cart</Button>
+                                            <Button onClick={() => removefromCart(element)}>Remove</Button>
                                         </CardActions>
                                     </Card>
                                 </Grid>);
-                        })
-                    }
+                        })}
                 </Grid>
             </ArgonBox>
             <Footer />

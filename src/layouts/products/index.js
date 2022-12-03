@@ -8,11 +8,14 @@ import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Icon
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { incrementByAmount } from '../../features/counter/cart'
+import ArgonAlert from "components/ArgonAlert";
 
 function Products() {
     const [products, setProducts] = useState([]);
+    const [isExists, setisExists] = useState(false);
+    const items = useSelector((state) => state.cartStore.items)
 
     const [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch()
@@ -30,12 +33,29 @@ function Products() {
     }, [])
 
     const addtoCart = (item) => {
-        dispatch(incrementByAmount(item));
+        let index = -1
+        for (let i = 0; i < items.length; i++) {
+            if (items[i].id === item.id) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            dispatch(incrementByAmount(item));
+        } else {
+            setisExists(true);
+        }
+        setTimeout(() => {
+            setisExists(false);
+        }, 3000);
     }
 
     return (
         <DashboardLayout>
             <DashboardNavbar />
+            {
+                isExists ? <ArgonAlert dismissible={true} color={'error'}> Alredy exists</ArgonAlert> : null
+            }
             <ArgonBox py={3}>
                 <Grid container spacing={3} mb={3}>
                     {
@@ -60,9 +80,14 @@ function Products() {
                                                 <Typography variant="subtitle2" color="text.secondary" component="div">
                                                     {element.category}
                                                 </Typography>
-                                                <Typography variant="body" maxHeight={400} minHeight={400} color="text.secondary">
+                                                <div style={{
+                                                    'max-height': '120px',
+                                                    'min-height': '120px',
+                                                    overflow: 'hidden',
+                                                    'text-overflow': 'ellipsis',
+                                                }}>
                                                     {element.description}
-                                                </Typography>
+                                                </div>
                                             </CardContent>
                                         </CardActionArea>
                                         <CardActions>
@@ -80,7 +105,7 @@ function Products() {
                 </Grid>
             </ArgonBox>
             <Footer />
-        </DashboardLayout>
+        </DashboardLayout >
     );
 }
 
