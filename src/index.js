@@ -15,7 +15,7 @@ Coded by www.creative-tim.com
 
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import App from "App";
 
 // Soft UI Context Provider
@@ -34,7 +34,7 @@ import { Provider } from 'react-redux'
 
 
 root.render(
-  <BrowserRouter>
+  <HashRouter>
     <ArgonControllerProvider>
       <PerfectScrollbar>
         <Provider store={store}>
@@ -42,5 +42,5 @@ root.render(
         </Provider>
       </PerfectScrollbar>
     </ArgonControllerProvider>
-  </BrowserRouter>
+  </HashRouter>
 );
