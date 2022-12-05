@@ -105,7 +105,7 @@ function Products() {
                 </Grid>
             </ArgonBox>
             <Footer />
-        </DashboardLayout >
+        </DashboardLayout>
     );
 }
 

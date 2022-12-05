@@ -62,17 +62,18 @@ function Footer({ company, links }) {
       >
         &copy; {new Date().getFullYear()}, made with
         <ArgonBox fontSize={size.md} color="text" mb={-0.5} mx={0.25}>
+          React&nbsp;&nbsp;
           <Icon color="inherit" fontSize="inherit">
             favorite
           </Icon>
         </ArgonBox>
-        by
-        <Link href={href} target="_blank">
+        &nbsp;&nbsp; by
+        <Link href={'#'} target="_blank">
           <ArgonTypography variant="button" fontWeight="medium">
-            &nbsp;{name}&nbsp;
+            &nbsp;{'Ateet'}&nbsp;
           </ArgonTypography>
         </Link>
-        for a better web.
+        {/* for a better web. */}
       </ArgonBox>
       <ArgonBox
         component="ul"
@@ -91,7 +92,7 @@ function Footer({ company, links }) {
           },
         })}
       >
-        {renderLinks()}
+        {/* {renderLinks()} */}
       </ArgonBox>
     </ArgonBox>
   );

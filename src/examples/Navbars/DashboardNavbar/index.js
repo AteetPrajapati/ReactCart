@@ -97,12 +97,23 @@ function DashboardNavbar({ absolute, light, isMini }) {
 
   useEffect(() => {
     localStorage.setItem('cartItem', JSON.stringify(items));
+    getTotal();
   }, [items])
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
+  const [totalCost,setTotalCost] = useState(0);
+
+
+  const getTotal = () => {
+    let sum = 0;
+    items.forEach(element => {
+      sum = element.price + sum
+    });
+    return setTotalCost(sum);
+  }
 
   // Render the notifications menu
   const renderMenu = () => (
@@ -227,7 +238,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
             </ArgonBox> */}
             <DetailedStatisticsCard
               title={items.length + " Items"}
-              count="$103,430"
+              count={totalCost}
               icon={{ color: "warning", component: <i className="ni ni-cart" /> }}
             />
           </ArgonBox>

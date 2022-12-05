@@ -86,14 +86,14 @@ function Header() {
           <Grid item>
             <ArgonBox height="100%" mt={0.5} lineHeight={1}>
               <ArgonTypography variant="h5" fontWeight="medium">
-                Alex Thompson
+                Ateet Prajapati
               </ArgonTypography>
               <ArgonTypography variant="button" color="text" fontWeight="medium">
-                CEO / Co-Founder
+                Front-end Developer
               </ArgonTypography>
             </ArgonBox>
           </Grid>
-          <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
+          {/* <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
             <AppBar position="static">
               <Tabs orientation={tabsOrientation} value={tabValue} onChange={handleSetTabValue}>
                 <Tab
@@ -122,7 +122,7 @@ function Header() {
                 />
               </Tabs>
             </AppBar>
-          </Grid>
+          </Grid> */}
         </Grid>
       </Card>
     </ArgonBox>
