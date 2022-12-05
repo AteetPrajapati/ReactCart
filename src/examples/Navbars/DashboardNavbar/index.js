@@ -104,7 +104,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
-  const [totalCost,setTotalCost] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
 
 
   const getTotal = () => {
@@ -112,7 +112,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
     items.forEach(element => {
       sum = element.price + sum
     });
-    return setTotalCost(sum);
+    return setTotalCost(sum.toFixed(2));
   }
 
   // Render the notifications menu
@@ -238,7 +238,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
             </ArgonBox> */}
             <DetailedStatisticsCard
               title={items.length + " Items"}
-              count={totalCost}
+              count={'₹' + totalCost}
               icon={{ color: "warning", component: <i className="ni ni-cart" /> }}
             />
           </ArgonBox>
